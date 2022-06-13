@@ -1,0 +1,30 @@
+﻿@model IEnumerable<VideoRentApp.Models.Movie>
+
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<p>
+	<a asp-action="Create">Create New Movie</a>
+</p>
+
+<div class="main-content">
+	<div class="browse-content">
+		<div class="container">
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class="browse-movie-wrap col-xs-10 col-sm-4 col-md-5 col-lg-4">
+						<a asp-action="Details" asp-controller="Movie" asp-route-id="@item.MovieId" class="browse-movie-link">@Html.DisplayFor(modelItem => item.Title)</a>
+						<figure>
+							<img class="img-responsive" src="~/img/@Html.DisplayFor(modelItem => item.ImageUrl)" alt="@item.Title" class="card-img" width="170" height="255">
+						</figure>
+						<div class="browse-movie-bottom">
+							<div class="browse-movie-year">@Html.DisplayFor(modelItem => item.DateRelease.Year)</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>
